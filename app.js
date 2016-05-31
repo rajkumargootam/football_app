@@ -1,6 +1,7 @@
 var angularApp = angular.module('FootballApp', ['ngResource','ngRoute']);
 
-angularApp.config(function ($routeProvider){
+angularApp.config(function ($routeProvider,$httpProvider){
+   $httpProvider.defaults.headers.get = { 'X-Auth-Token' : '81c67bb50c22475988d142f17b0b0ddc'  }
   $routeProvider
   .when ('/',
   {
@@ -11,12 +12,19 @@ angularApp.config(function ($routeProvider){
 
 });
 
-angularApp.controller("FootBallController",['$resource','$filter','$routeParams',
-function($resource,$filter,$routeParams){
+angularApp.controller("FootBallController",['$resource','$filter','$routeParams','$http',
+function($resource,$filter,$routeParams,$http){
    var vm=this;
-   var id = $routeParams.uniqId;
-   var FootballResource = $resource('http://api.football-data.org/v1/soccerseasons',{ 'X-Auth-Token': '81c67bb50c22475988d142f17b0b0ddc' });
-   vm.FootballResponse = FootballResource.get();
-   console.log('FootballResponse');
+   var footballResource = $resource('http://api.football-data.org/v1/soccerseasons');
+   vm.football_data = footballResource.query();
+   console.log(vm.football_data);
+
+  //  var config = { headers: {
+  //                             'X-Auth-Token' : '81c67bb50c22475988d142f17b0b0ddc'
+  //                           }
+  //               };
+  //  var data = $http.get('http://api.football-data.org/v1/soccerseasons',config);
+  //  console.log(data);
+
 
 }]);
