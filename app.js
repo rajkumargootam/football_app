@@ -6,16 +6,32 @@ angularApp.config(function ($routeProvider,$httpProvider){
   .when ('/',
   {
     templateUrl: 'pages/league.html',
-    controller: 'FootBallController',
+    controller: 'FootballController',
     controllerAs: 'fb'
+  })
+  .when ('/leagueDetails/:uniqId',
+  {
+    templateUrl: 'pages/leagueDetails.html',
+    controller: 'DetailsController',
+    controllerAs: 'ld'
   })
 
 });
 
-angularApp.controller("FootBallController",['$resource','$filter','$routeParams','$http',
+angularApp.controller("FootballController",['$resource','$filter','$routeParams','$http',
 function($resource,$filter,$routeParams,$http){
    var vm=this;
    var footballResource = $resource('http://api.football-data.org/v1/soccerseasons');
    vm.football_data = footballResource.query();
    console.log(vm.football_data);
+}]);
+
+
+angularApp.controller("DetailsController",['$resource','$filter','$routeParams','$http',
+function($resource,$filter,$routeParams,$http){
+   var vm = this;
+   var id = $routeParams.uniqId;
+   var leagueDetailsResource = $resource('http://api.football-data.org/v1/soccerseasons/'+ id +'/teams');
+   vm.leagueDetails_data = leagueDetailsResource.get();
+   console.log(vm.leagueDetails_data);
 }]);
