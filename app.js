@@ -18,13 +18,4 @@ function($resource,$filter,$routeParams,$http){
    var footballResource = $resource('http://api.football-data.org/v1/soccerseasons');
    vm.football_data = footballResource.query();
    console.log(vm.football_data);
-
-  //  var config = { headers: {
-  //                             'X-Auth-Token' : '81c67bb50c22475988d142f17b0b0ddc'
-  //                           }
-  //               };
-  //  var data = $http.get('http://api.football-data.org/v1/soccerseasons',config);
-  //  console.log(data);
-
-
 }]);
