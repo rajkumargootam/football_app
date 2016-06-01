@@ -4,9 +4,9 @@
 }
 
 
-#header{
+/*#header{
       background-color: #2980b9;
-}
+}*/
 h2 {
 
     font-size: 30px;
@@ -21,10 +21,18 @@ h2 {
   display: inline-table;
 }
 
-.league_image{
+/*.league_image{
   width: 30px;
 }
 
 .leaguetable_image{
-  width: 30px;
+  width: 40px;
+}*/
+
+#result-teams{
+background-color: #001B8E;
+}
+
+#result-league{
+  background-color: #001B8E;
 }
