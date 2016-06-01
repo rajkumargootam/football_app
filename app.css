@@ -1,3 +1,22 @@
 #result .match:hover {
   box-shadow: 0 0 15px #222;
+
+}
+
+
+#header{
+      background-color: #2980b9;
+}
+h2 {
+
+    font-size: 30px;
+    text-align: center;
+  }
+#header-color{
+  color: white !important;
+}
+
+#league-anchor:hover {
+  text-decoration: none;
+  display: inline-table;
 }

@@ -15,6 +15,12 @@ angularApp.config(function ($routeProvider,$httpProvider){
     controller: 'DetailsController',
     controllerAs: 'ld'
   })
+  // .when ('/leaugetable:uniqId',
+  // {
+  //   templateUrl: 'pages/leaguetable.html',
+  //   controller: 'LeagueTableController',
+  //   controllerAs: 'fc'
+  // })
 
 });
 
@@ -35,3 +41,12 @@ function($resource,$filter,$routeParams,$http){
    vm.leagueDetails_data = leagueDetailsResource.get();
    console.log(vm.leagueDetails_data);
 }]);
+
+// angularApp.controller("LeagueTableController",['$resource','$filter','$routeParams','$http',
+// function($resource,$filter,$routeParams,$http){
+//    var vm = this;
+//    var id = $routeParams.uniqId;
+//    var leaguetableResource = $resource('http://api.football-data.org/v1/soccerseasons/394/leagueTable');
+//    vm.leaguetable_data = leaguetableResource.get();
+//    console.log(vm.fixturesDetails_data);
+// }]);
