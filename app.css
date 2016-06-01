@@ -20,3 +20,11 @@ h2 {
   text-decoration: none;
   display: inline-table;
 }
+
+.league_image{
+  width: 40px;
+}
+
+.leaguetable_image{
+  width: 40px;
+}

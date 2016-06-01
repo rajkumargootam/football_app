@@ -15,7 +15,7 @@ angularApp.config(function ($routeProvider,$httpProvider){
     controller: 'DetailsController',
     controllerAs: 'ld'
   })
-  // .when ('/leaugetable:uniqId',
+  // .when ('/leaugetable/:uniqId',
   // {
   //   templateUrl: 'pages/leaguetable.html',
   //   controller: 'LeagueTableController',
@@ -40,6 +40,11 @@ function($resource,$filter,$routeParams,$http){
    var leagueDetailsResource = $resource('http://api.football-data.org/v1/soccerseasons/'+ id +'/teams');
    vm.leagueDetails_data = leagueDetailsResource.get();
    console.log(vm.leagueDetails_data);
+
+   var id = $routeParams.uniqId;
+   var leagueTableResource = $resource('http://api.football-data.org/v1/soccerseasons/'+ id +'/leagueTable');
+   vm.leagueTableResponse = leagueTableResource.get();
+   console.log(vm.leagueTableResponse);
 }]);
 
 // angularApp.controller("LeagueTableController",['$resource','$filter','$routeParams','$http',
