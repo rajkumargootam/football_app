@@ -29,10 +29,16 @@ h2 {
   width: 40px;
 }*/
 
-#result-teams{
-background-color: #001B8E;
-}
+    #result-teams{
+    background-color: #001B8E;
+    }
 
-#result-league{
-  background-color: #001B8E;
-}
+    #result-league{
+      background-color: #001B8E;
+    }
+
+/*#img{
+  background-image: url('images/bg.jpg');
+  background-repeat: no-repeat;
+
+}*/
