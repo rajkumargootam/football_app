@@ -21,6 +21,10 @@ h2 {
   display: inline-table;
 }
 
+#leagueDetails-anchor{
+  text-decoration: none;
+  display: inline-table;  
+}
 /*.league_image{
   width: 30px;
 }
@@ -30,11 +34,11 @@ h2 {
 }*/
 
     #result-teams{
-    background-color: #001B8E;
+    background-color: #ecf0f1;
     }
 
     #result-league{
-      background-color: #001B8E;
+      background-color: #ecf0f1;
     }
 
 /*#img{

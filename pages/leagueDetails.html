@@ -18,11 +18,11 @@
             </thead>
             <tbody>
               <tr ng-repeat = "n in ld.leagueDetails_data.teams">
-                <td><img class="img-responsive" ng-src="{{n.crestUrl}}" width="40" height="40"/></td>
-                <td>{{n.name}}</td>
-                <td>{{n.code}}</td>
-                <td>{{n.shortName}}</td>
-                <td>{{n.squadMarketValue}}</td>
+                  <td><img class="img-responsive" ng-src="{{n.crestUrl}}" width="40" height="40"/></td>
+                  <td><a id = "leagueDetails-anchor" ng-href="#/teams/{{n.teamId}}" ng-click="getTeamDetails(n.teamId)">{{n.name}}</a></td>
+                  <td>{{n.code}}</td>
+                  <td>{{n.shortName}}</td>
+                  <td>{{n.squadMarketValue}}</a></td>
               </tr>
             </tbody>
           </table>

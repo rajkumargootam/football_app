@@ -15,12 +15,12 @@ angularApp.config(function ($routeProvider,$httpProvider){
     controller: 'DetailsController',
     controllerAs: 'ld'
   })
-  // .when ('/leaugetable/:uniqId',
-  // {
-  //   templateUrl: 'pages/leaguetable.html',
-  //   controller: 'LeagueTableController',
-  //   controllerAs: 'fc'
-  // })
+  .when ('/teams/:uniqId',
+  {
+    templateUrl: 'pages/player.html',
+    controller: 'PlayerController',
+    controllerAs: 'pc'
+  })
 
 });
 
@@ -33,12 +33,12 @@ function($resource,$filter,$routeParams,$http){
 }]);
 
 
-angularApp.controller("DetailsController",['$routeParams','FootballService',
-function($routeParams,FootballService){
-   var vm = this;
-   var id = $routeParams.uniqId;
-  //  var leagueDetailsResource = $resource('http://api.football-data.org/v1/soccerseasons/'+ id +'/teams');
-   var promise = FootballService.getTeamDetails(id);
+angularApp.controller("DetailsController",['$routeParams','FootballService','$resource',
+function($routeParams,FootballService,$resource){
+ var vm = this;
+ var id = $routeParams.uniqId;
+//  var leagueDetailsResource = $resource('http://api.football-data.org/v1/soccerseasons/'+ id +'/teams');
+ var promise = FootballService.getTeamDetails(id);
    promise.then(function(data){
       vm.leagueDetails_data = data;
    },function(err){
@@ -47,15 +47,11 @@ function($routeParams,FootballService){
   //   =
   //  console.log(vm.leagueDetails_data);
 
-  //  var id = $routeParams.uniqId;
-  //  var leagueTableResource = $resource('http://api.football-data.org/v1/soccerseasons/'+ id +'/leagueTable');
-  //  vm.leagueTableResponse = leagueTableResource.get();
-  //  console.log(vm.leagueTableResponse);
-   //
-  //  var id = $routeParams.uniqId;
-  //  var playerResource = $resource('http://api.football-data.org/v1/soccerseasons/'+ id +'/teams'/'players');
-  //  vm.playerResponse = playerResource.get();
-  //  console.log(vm.playerResponse);
+   var id = $routeParams.uniqId;
+   var leagueTableResource = $resource('http://api.football-data.org/v1/soccerseasons/'+ id +'/leagueTable');
+   vm.leagueTableResponse = leagueTableResource.get();
+   console.log(vm.leagueTableResponse);
+
 }]);
 
 angularApp.service('FootballService',['$resource','$q',function($resource,$q){
@@ -67,12 +63,12 @@ angularApp.service('FootballService',['$resource','$q',function($resource,$q){
     var rsp = leagueDetailsResource.get();
     var deferred = $q.defer();
     rsp.$promise.then(function(data){
-      //console.log(data);
+      // console.log(data);
       angular.forEach(data.teams,function(element,index){
-        // console.log(element);
+        console.log(element);
         var self_link = element._links.self.href.split('/');
         element.teamId = self_link[self_link.length - 1];
-        // console.log(self_link);
+        console.log(self_link);
       });
       console.log(data.teams);
       deferred.resolve(data);
@@ -85,11 +81,17 @@ angularApp.service('FootballService',['$resource','$q',function($resource,$q){
 
 }]);
 
-// angularApp.controller("LeagueTableController",['$resource','$filter','$routeParams','$http',
-// function($resource,$filter,$routeParams,$http){
-//    var vm = this;
-//    var id = $routeParams.uniqId;
-//    var leaguetableResource = $resource('http://api.football-data.org/v1/soccerseasons/394/leagueTable');
-//    vm.leaguetable_data = leaguetableResource.get();
-//    console.log(vm.fixturesDetails_data);
-// }]);
+angularApp.controller("PlayerController",['$resource','$routeParams','$http',
+function($resource,$routeParams,$http){
+  vm = this;
+  var id = $routeParams.uniqId;
+  var playerResource = $resource('http://api.football-data.org/v1/teams/'+ id +'/players');
+  vm.playerResponse = playerResource.get();
+  console.log(vm.playerResponse);
+
+  vm = this;
+  var id = $routeParams.uniqId;
+  var fixturesResource = $resource('http://api.football-data.org/v1/teams/'+ id +'/fixtures');
+  vm.fixturesResponse = fixturesResource.get();
+  console.log(vm.fixturesResponse);
+}]);
